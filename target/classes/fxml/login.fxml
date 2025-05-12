@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fitness.auth.controllers.LoginController">
+    <top>
+        <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </padding>
+            <children>
+                <!-- Title and Navigation Buttons -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label text="User Authentication">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS"/> <!-- Spacer -->
+                        <Button fx:id="backButton" mnemonicParsing="false" styleClass="nav-button" text="Back" />
+                        <Button fx:id="exitButton" mnemonicParsing="false" styleClass="nav-button" text="Exit" />
+                    </children>
+                </HBox>
+                <!-- Subtitle -->
+                <Label text="Please login or create a new account to continue" styleClass="subtitle">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <VBox alignment="CENTER" spacing="20.0">
+            <children>
+                <TabPane fx:id="tabPane" maxWidth="600.0" styleClass="auth-tabs" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Login">
+                            <content>
+                                <VBox alignment="TOP_CENTER" spacing="15.0">
+                                    <padding>
+                                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                                    </padding>
+                                    <children>
+                                        <TextField fx:id="loginIdentifierField" maxWidth="400.0" minHeight="35.0" promptText="Email or Username" styleClass="auth-field" />
+                                        <PasswordField fx:id="loginPasswordField" maxWidth="400.0" minHeight="35.0" promptText="Password" styleClass="auth-field" />
+                                        <Label fx:id="loginErrorLabel" maxWidth="400.0" styleClass="error-label" textFill="RED" visible="false" wrapText="true" />
+                                        <VBox alignment="CENTER" spacing="10.0">
+                                            <children>
+                                                <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="200.0" styleClass="primary-button" text="Login" />
+                                                <Hyperlink fx:id="forgotPasswordLink" text="Forgot Password?" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+                            </content>
+                        </Tab>
+                        <Tab text="Registration">
+                            <content>
+                                <VBox alignment="TOP_CENTER" spacing="15.0">
+                                    <padding>
+                                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                                    </padding>
+                                    <children>
+                                        <TextField fx:id="regUsernameField" maxWidth="400.0" minHeight="35.0" promptText="Username" styleClass="auth-field" />
+                                        <TextField fx:id="regEmailField" maxWidth="400.0" minHeight="35.0" promptText="Email" styleClass="auth-field" />
+                                        <PasswordField fx:id="regPasswordField" maxWidth="400.0" minHeight="35.0" promptText="Password" styleClass="auth-field" />
+                                        <PasswordField fx:id="regConfirmPasswordField" maxWidth="400.0" minHeight="35.0" promptText="Confirm Password" styleClass="auth-field" />
+                                        <VBox fx:id="passwordRequirementsBox" alignment="TOP_CENTER" maxWidth="400.0" spacing="5.0" styleClass="requirements-box">
+                                            <children>
+                                                <Label styleClass="requirements-title" text="Password Requirements:">
+                                                    <font>
+                                                        <Font name="System Bold" size="13.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label styleClass="requirement-item" text="• At least 8 characters" />
+                                                <Label styleClass="requirement-item" text="• At least one number" />
+                                                <Label styleClass="requirement-item" text="• At least one letter" />
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </VBox>
+                                        <Label fx:id="regErrorLabel" maxWidth="400.0" styleClass="error-label" textFill="RED" visible="false" wrapText="true" />
+                                        <Button fx:id="registerButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="200.0" styleClass="primary-button" text="Register" />
+                                    </children>
+                                </VBox>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,244 @@
+/* General Styles */
+.root {
+    background-color: #f5f5f5;
+    -fx-background-color: #f5f5f5;
+    font-family: 'System';
+    -fx-font-family: 'System';
+}
+
+/* Navigation and Buttons */
+.nav-button {
+    background-color: transparent;
+    -fx-background-color: transparent;
+    border-color: #2196F3;
+    -fx-border-color: #2196F3;
+    border-radius: 5px;
+    -fx-border-radius: 5;
+    background-radius: 5px;
+    -fx-background-radius: 5;
+    padding: 5px 15px;
+    -fx-padding: 5 15;
+}
+
+.nav-button:hover {
+    background-color: #E3F2FD;
+    -fx-background-color: #E3F2FD;
+}
+
+.primary-button {
+    background-color: #2196F3;
+    -fx-background-color: #2196F3;
+    border-radius: 5px;
+    -fx-border-radius: 5;
+    background-radius: 5px;
+    -fx-background-radius: 5;
+    padding: 8px 20px;
+    -fx-padding: 8 20;
+}
+
+.primary-button:hover {
+    background-color: #1976D2;
+    -fx-background-color: #1976D2;
+}
+
+.action-button {
+    background-color: #4CAF50;
+    -fx-background-color: #4CAF50;
+    border-radius: 5px;
+    -fx-border-radius: 5;
+    background-radius: 5px;
+    -fx-background-radius: 5;
+    padding: 8px 20px;
+    -fx-padding: 8 20;
+}
+
+.action-button:hover {
+    background-color: #388E3C;
+    -fx-background-color: #388E3C;
+}
+
+.delete-button {
+    background-color: #F44336;
+    -fx-background-color: #F44336;
+    border-radius: 5px;
+    -fx-border-radius: 5;
+    background-radius: 5px;
+    -fx-background-radius: 5;
+    padding: 8px 20px;
+    -fx-padding: 8 20;
+}
+
+.delete-button:hover {
+    background-color: #D32F2F;
+    -fx-background-color: #D32F2F;
+}
+
+/* Text Fields and Areas */
+.text-field, .text-area {
+    background-color: white;
+    -fx-background-color: white;
+    border-color: #BDBDBD;
+    -fx-border-color: #BDBDBD;
+    border-radius: 3px;
+    -fx-border-radius: 3;
+    background-radius: 3px;
+    -fx-background-radius: 3;
+}
+
+.text-field:focused, .text-area:focused {
+    border-color: #2196F3;
+    -fx-border-color: #2196F3;
+}
+
+/* Labels */
+.title-label {
+    font-size: 24px;
+    -fx-font-size: 24px;
+    font-weight: bold;
+    -fx-font-weight: bold;
+}
+
+.subtitle {
+    font-size: 14px;
+    -fx-font-size: 14px;
+}
+
+.error-label {
+    color: #F44336;
+    -fx-text-fill: #F44336;
+    font-size: 12px;
+    -fx-font-size: 12px;
+}
+
+/* Tables */
+.table-view {
+    background-color: white;
+    -fx-background-color: white;
+    border-color: #E0E0E0;
+    -fx-border-color: #E0E0E0;
+    border-radius: 3px;
+    -fx-border-radius: 3;
+}
+
+.table-view .column-header {
+    background-color: #F5F5F5;
+    -fx-background-color: #F5F5F5;
+    border-color: #E0E0E0;
+    -fx-border-color: #E0E0E0;
+}
+
+.table-row-cell:selected {
+    background-color: #E3F2FD;
+    -fx-background-color: #E3F2FD;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: white;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 0);
+}
+
+/* Content Area */
+.content-area {
+    background-color: white;
+    -fx-background-color: white;
+    padding: 20px;
+    -fx-padding: 20;
+}
+
+/* Auth Components */
+.auth-tabs .tab-header-area {
+    padding: 5px;
+    -fx-padding: 5;
+}
+
+.auth-field {
+    height: 35px;
+    -fx-pref-height: 35;
+    background-color: white;
+    -fx-background-color: white;
+    border-color: #BDBDBD;
+    -fx-border-color: #BDBDBD;
+    border-radius: 3px;
+    -fx-border-radius: 3;
+}
+
+.requirements-box {
+    background-color: #F5F5F5;
+    -fx-background-color: #F5F5F5;
+    border-color: #E0E0E0;
+    -fx-border-color: #E0E0E0;
+    border-radius: 3px;
+    -fx-border-radius: 3;
+}
+
+/* Progress Tracking */
+.chart-series-line {    
+    stroke-width: 2px;
+    -fx-stroke-width: 2px;
+}
+
+.chart-line-symbol {
+    background-radius: 5px;
+    -fx-background-radius: 5;
+    padding: 5px;
+    -fx-padding: 5;
+}
+
+/* Workout Session */
+.set-table {
+    height: 200px;
+    -fx-pref-height: 200;
+}
+
+.notes-area {
+    height: 60px;
+    -fx-pref-height: 60;
+    max-height: 100px;
+    -fx-max-height: 100;
+}
+
+/* Exercise Library */
+.filter-box {
+    spacing: 10px;
+    -fx-spacing: 10;
+    padding: 10px;
+    -fx-padding: 10;
+    background-color: #F5F5F5;
+    -fx-background-color: #F5F5F5;
+    border-color: #E0E0E0;
+    -fx-border-color: #E0E0E0;
+    border-radius: 3px;
+    -fx-border-radius: 3;
+}
+
+/* User Profile */
+.section-header {
+    font-size: 16px;
+    -fx-font-size: 16px;
+    font-weight: bold;
+    -fx-font-weight: bold;
+    padding: 10px 0;
+    -fx-padding: 10 0;
+}
+
+.field-label {
+    font-weight: bold;
+    -fx-font-weight: bold;
+}
+
+/* Workout Planning */
+.settings-pane {
+    background-color: #F5F5F5;
+    -fx-background-color: #F5F5F5;
+}
+
+.nav-list {
+    background-color: transparent;
+    -fx-background-color: transparent;
+    border-color: #E0E0E0;
+    -fx-border-color: #E0E0E0;
+    border-radius: 3px;
+    -fx-border-radius: 3;
+}
