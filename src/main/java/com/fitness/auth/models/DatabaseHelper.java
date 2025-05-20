@@ -63,7 +63,7 @@ public class DatabaseHelper {
                     name TEXT NOT NULL UNIQUE,
                     muscle_group TEXT NOT NULL,
                     description TEXT,
-                    equipment_needed TEXT
+                    equipment TEXT
                 )
             """;
             stmt.execute(createExercisesTable);
@@ -158,7 +158,7 @@ public class DatabaseHelper {
     }
 
     private static void insertDefaultExercises(Connection conn) throws SQLException {
-        String sql = "INSERT OR IGNORE INTO exercises (name, muscle_group, description, equipment_needed) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT OR IGNORE INTO exercises (name, muscle_group, description, equipment) VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             // Array of default exercises

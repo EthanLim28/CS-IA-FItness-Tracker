@@ -7,23 +7,23 @@ public class Exercise {
     private final StringProperty name;
     private final StringProperty description;
     private final StringProperty muscleGroup;
-    private final ObjectProperty<ExerciseCategory> category;
+    
     private final StringProperty equipment;
 
     public Exercise() {
-        this(0, "", "", "", ExerciseCategory.STRENGTH, "");
+        this(0, "", "", "", "");
     }
 
-    public Exercise(String name, String description, String muscleGroup, ExerciseCategory category, String equipment) {
-        this(0, name, description, muscleGroup, category, equipment);
+    public Exercise(String name, String description, String muscleGroup, String equipment) {
+        this(0, name, description, muscleGroup, equipment);
     }
 
-    public Exercise(int exerciseId, String name, String description, String muscleGroup, ExerciseCategory category, String equipment) {
+    public Exercise(int exerciseId, String name, String description, String muscleGroup, String equipment) {
         this.exerciseId = new SimpleIntegerProperty(exerciseId);
         this.name = new SimpleStringProperty(name);
         this.description = new SimpleStringProperty(description);
         this.muscleGroup = new SimpleStringProperty(muscleGroup);
-        this.category = new SimpleObjectProperty<>(category);
+        
         this.equipment = new SimpleStringProperty(equipment);
     }
 
@@ -73,18 +73,6 @@ public class Exercise {
 
     public void setMuscleGroup(String muscleGroup) {
         this.muscleGroup.set(muscleGroup);
-    }
-
-    public ExerciseCategory getCategory() {
-        return category.get();
-    }
-
-    public ObjectProperty<ExerciseCategory> categoryProperty() {
-        return category;
-    }
-
-    public void setCategory(ExerciseCategory category) {
-        this.category.set(category);
     }
 
     public String getEquipment() {

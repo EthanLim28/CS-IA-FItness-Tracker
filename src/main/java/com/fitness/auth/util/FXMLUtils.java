@@ -9,8 +9,17 @@ import java.util.function.Consumer;
 
 public class FXMLUtils {
     public static Stage createDialogStage(Stage parentStage, String title, String fxmlPath) throws IOException {
-        FXMLLoader loader = new FXMLLoader(FXMLUtils.class.getResource("/fxml/" + fxmlPath));
+        String resourcePath = "/fxml/" + fxmlPath;
+        System.out.println("[DEBUG] Attempting to load FXML: " + resourcePath);
+        java.net.URL resourceUrl = FXMLUtils.class.getResource(resourcePath);
+        System.out.println("[DEBUG] Resource URL: " + resourceUrl);
+        if (resourceUrl == null) {
+            throw new IOException("FXML resource not found: " + resourcePath);
+        }
+        FXMLLoader loader = new FXMLLoader(resourceUrl);
         Scene scene = new Scene(loader.load());
+        // Set the loader as userData so getController works
+        scene.setUserData(loader);
         
         Stage dialogStage = new Stage();
         dialogStage.setTitle(title);
@@ -28,7 +37,7 @@ public class FXMLUtils {
     }
 
     public static <T> void showDialog(String fxmlPath, String title, Stage parentStage, Consumer<T> controllerInitializer) throws IOException {
-        Stage dialogStage = createDialogStage(parentStage, title, fxmlPath);
+        Stage dialogStage = createDialogStage(parentStage, title, fxmlPath.toLowerCase());
         T controller = getController(dialogStage);
         
         if (controller != null) {

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fitness.auth.controllers.WorkoutSessionController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fitness.auth.controllers.WorkoutSessionController">
     <top>
         <VBox prefHeight="100.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
             <padding>
@@ -44,16 +44,11 @@
                 </columnConstraints>
 
                 <Label text="Date:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                <DatePicker fx:id="sessionDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <DatePicker fx:id="workoutDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
-                <Label text="Duration:" styleClass="field-label" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-                <TextField fx:id="durationField" promptText="Minutes" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+                <Label text="Name:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="workoutNameField" promptText="Workout Name" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-                <Label text="Type:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <ComboBox fx:id="workoutTypeComboBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-
-                <Label text="Status:" styleClass="field-label" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-                <ComboBox fx:id="statusComboBox" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
             </GridPane>
 
             <!-- Exercise List -->
@@ -61,35 +56,27 @@
                 <VBox spacing="10.0">
                     <HBox spacing="10.0" alignment="CENTER_LEFT">
                         <Button fx:id="addExerciseButton" text="Add Exercise" styleClass="action-button"/>
-                        <Button fx:id="removeExerciseButton" text="Remove Exercise" styleClass="action-button"/>
+                        
                         <Region HBox.hgrow="ALWAYS"/>
-                        <ComboBox fx:id="filterComboBox" promptText="Filter by Muscle Group"/>
+                        
                     </HBox>
 
-                    <TableView fx:id="exerciseTable" VBox.vgrow="ALWAYS">
-                        <columns>
-                            <TableColumn fx:id="exerciseNameColumn" text="Exercise" prefWidth="200.0"/>
-                            <TableColumn fx:id="setsColumn" text="Sets" prefWidth="100.0"/>
-                            <TableColumn fx:id="weightColumn" text="Weight (kg)" prefWidth="100.0"/>
-                            <TableColumn fx:id="repsColumn" text="Reps" prefWidth="100.0"/>
-                            <TableColumn fx:id="notesColumn" text="Notes" prefWidth="200.0"/>
-                        </columns>
-                    </TableView>
+                    <VBox fx:id="workoutContainer" spacing="10.0" VBox.vgrow="ALWAYS">
+                        <!-- DYNAMIC TABLES: These are added by the controller for each exercise -->
+                    </VBox>
                 </VBox>
             </TitledPane>
 
             <!-- Session Notes -->
             <TitledPane text="Session Notes" expanded="true">
-                <TextArea fx:id="sessionNotesArea" prefRowCount="3" wrapText="true"/>
+                <TextArea fx:id="notesArea" prefRowCount="3" wrapText="true"/>
             </TitledPane>
 
             <!-- Action Buttons -->
             <HBox spacing="10.0" alignment="CENTER_RIGHT">
-                <Button fx:id="startButton" text="Start Session" styleClass="primary-button"/>
-                <Button fx:id="pauseButton" text="Pause" styleClass="action-button"/>
-                <Button fx:id="finishButton" text="Finish" styleClass="action-button"/>
-                <Button fx:id="saveButton" text="Save" styleClass="primary-button"/>
-            </HBox>
+    <Button fx:id="cancelButton" text="Cancel" styleClass="action-button"/>
+    <Button fx:id="saveWorkoutButton" text="Save Workout" styleClass="primary-button"/>
+</HBox>
         </VBox>
     </center>
 </BorderPane>

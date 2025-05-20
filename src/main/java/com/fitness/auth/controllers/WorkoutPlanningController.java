@@ -11,6 +11,31 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 public class WorkoutPlanningController {
+    private NavigationController navigationController;
+    @FXML private Button backButton;
+    @FXML private Button homeButton;
+
+    public void setNavigationController(NavigationController navigationController) {
+        this.navigationController = navigationController;
+    }
+
+    @FXML
+    private void handleBack() {
+        if (navigationController != null) {
+            navigationController.navigateBack();
+        } else if (stage != null) {
+            stage.close();
+        }
+    }
+
+    @FXML
+    private void handleHome() {
+        if (navigationController != null) {
+            navigationController.navigateToHome();
+        } else if (stage != null) {
+            stage.close();
+        }
+    }
     @FXML private DatePicker datePicker;
     @FXML private TextField workoutTypeField;
     @FXML private ListView<WorkoutSet> exerciseList;
@@ -28,6 +53,8 @@ public class WorkoutPlanningController {
             workoutDAO = new DailyWorkoutDAO(DatabaseHelper.getConnection());
             datePicker.setValue(LocalDate.now());
             setupButtonHandlers();
+            if (backButton != null) backButton.setOnAction(e -> handleBack());
+            if (homeButton != null) homeButton.setOnAction(e -> handleHome());
         } catch (SQLException e) {
             DialogUtils.showError("Error", "Failed to initialize workout planning: " + e.getMessage());
         }
@@ -50,14 +77,39 @@ public class WorkoutPlanningController {
 
     private void handleAddExercise() {
         try {
-            Stage dialogStage = FXMLUtils.createDialogStage(stage, "Add Exercise", "AddExerciseDialog.fxml");
-            AddExerciseDialogController controller = FXMLUtils.getController(dialogStage);
-            controller.setDialogStage(dialogStage);
-            controller.setWorkout(workout);
-            controller.setOnExerciseAdded(this::refreshExerciseList);
-            dialogStage.showAndWait();
+            // Open the Exercise Library dialog first
+            Stage libraryStage = FXMLUtils.createDialogStage(stage, "Exercise Library", "exercise_library.fxml");
+            ExerciseLibraryController libraryController = FXMLUtils.getController(libraryStage);
+            libraryController.setDialogStage(libraryStage);
+            libraryController.setOnExerciseSelected(selectedExercise -> {
+                // Add selected exercise to workout
+                if (selectedExercise != null) {
+                    // Create a new WorkoutSet for the selected exercise with default values
+                    WorkoutSet newSet = new WorkoutSet(selectedExercise, workout.getWorkoutSets().size() + 1, 0, 0.0, "");
+                    workout.addSet(newSet);
+                    refreshExerciseList();
+                    libraryStage.close();
+                }
+            });
+            libraryController.setOnCreateExercise(() -> {
+                // Open the Create Exercise dialog
+                try {
+                    Stage createStage = FXMLUtils.createDialogStage(libraryStage, "Create Exercise", "add_exercise_dialog.fxml");
+                    AddExerciseDialogController addController = FXMLUtils.getController(createStage);
+                    addController.setDialogStage(createStage);
+                    addController.setOnExerciseAdded(() -> {
+                        // After creating, refresh the library and keep it open
+                        libraryController.refreshExerciseList();
+                        createStage.close();
+                    });
+                    createStage.showAndWait();
+                } catch (Exception ce) {
+                    DialogUtils.showError("Error", "Could not open create exercise dialog: " + ce.getMessage());
+                }
+            });
+            libraryStage.showAndWait();
         } catch (Exception e) {
-            DialogUtils.showError("Error", "Could not open add exercise dialog: " + e.getMessage());
+            DialogUtils.showError("Error", "Could not open exercise library dialog: " + e.getMessage());
         }
     }
 

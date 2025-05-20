@@ -16,6 +16,29 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.ButtonType; // Removed duplicate and unused imports
 
 public class DashboardController extends BaseController {
+    private NavigationController navigationController;
+    @FXML private Button backButton;
+    @FXML private Button homeButton;
+
+    public void setNavigationController(NavigationController navigationController) {
+        this.navigationController = navigationController;
+        System.out.println("[DEBUG] setNavigationController called: navigationController set to " + navigationController);
+
+    }
+
+    @FXML
+    private void handleBack() {
+        if (navigationController != null) {
+            navigationController.navigateBack();
+        }
+    }
+
+    @FXML
+    private void handleHome() {
+        if (navigationController != null) {
+            navigationController.navigateToHome();
+        }
+    }
     @FXML private Label welcomeLabel;
     @FXML private Label streakLabel;
     @FXML private VBox recentWorkoutsContainer;
@@ -31,6 +54,8 @@ public class DashboardController extends BaseController {
 
     @FXML
     public void initialize() {
+        if (backButton != null) backButton.setOnAction(e -> handleBack());
+        if (homeButton != null) homeButton.setOnAction(e -> handleHome());
         // Setup reset database button
         if (resetDatabaseButton != null) {
             resetDatabaseButton.setOnAction(e -> handleResetDatabase());
@@ -162,10 +187,18 @@ public class DashboardController extends BaseController {
     }
 
     private void handleStartWorkout() {
+        System.out.println("[DEBUG] handleStartWorkout called");
+        if (navigationController == null) {
+            DialogUtils.showError("Error", "NavigationController is null in handleStartWorkout. Cannot navigate.");
+            System.err.println("[ERROR] NavigationController is null in handleStartWorkout");
+            return;
+        }
         try {
             navigationController.navigateTo("WorkoutSession");
+            System.out.println("[DEBUG] navigationController.navigateTo('WorkoutSession') called");
         } catch (Exception e) {
             DialogUtils.showError("Error", "Could not start workout: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

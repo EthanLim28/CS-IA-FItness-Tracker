@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fitness.auth.controllers.ExerciseLibraryController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fitness.auth.controllers.ExerciseLibraryController">
     <top>
         <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
             <padding>
@@ -34,7 +34,10 @@
                             </font>
                         </Label>
                         <Region HBox.hgrow="ALWAYS"/> <!-- Spacer -->
-                        <Button fx:id="addExerciseButton" mnemonicParsing="false" styleClass="action-button" text="Add Exercise" />
+                        <Button fx:id="addButton" mnemonicParsing="false" styleClass="action-button" text="Add Exercise" onAction="#handleAddExerciseToSession" />
+                        <Button fx:id="createExerciseButton" mnemonicParsing="false" styleClass="action-button" text="Create Exercise" />
+                        <Button fx:id="editButton" mnemonicParsing="false" styleClass="action-button" text="Edit Exercise" />
+                        <Button fx:id="deleteButton" mnemonicParsing="false" styleClass="action-button" text="Delete Exercise" />
                         <Button fx:id="backButton" mnemonicParsing="false" styleClass="nav-button" text="Back" />
                         <Button fx:id="homeButton" mnemonicParsing="false" styleClass="nav-button" text="Home" />
                     </children>
@@ -82,9 +85,12 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
-                                        <Label fx:id="detailsName" text="Name:" />
-                                        <Label fx:id="detailsMuscleGroup" text="Muscle Group:" GridPane.rowIndex="1" />
-                                        <Label fx:id="detailsEquipment" text="Equipment:" GridPane.rowIndex="2" />
+                                        <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                                        <Label fx:id="detailsName" text="" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                                        <Label text="Muscle Group:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                                        <Label fx:id="detailsMuscleGroup" text="" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                                        <Label text="Equipment:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                                        <Label fx:id="detailsEquipment" text="" GridPane.rowIndex="2" GridPane.columnIndex="1" />
                                     </children>
                                 </GridPane>
                             </children>
@@ -92,6 +98,7 @@
                                 <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                             </padding>
                         </VBox>
+
                     </children>
                 </AnchorPane>
             </items>

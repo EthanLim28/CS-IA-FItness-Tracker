@@ -18,8 +18,14 @@ public class DatabaseConnection {
     }
     
     public static synchronized DatabaseConnection getInstance() {
-        if (instance == null) {
-            instance = new DatabaseConnection();
+        try {
+            if (instance == null) {
+                instance = new DatabaseConnection();
+            } else if (instance.connection == null || instance.connection.isClosed()) {
+                instance.connection = DriverManager.getConnection(DATABASE_URL);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to reconnect to database", e);
         }
         return instance;
     }

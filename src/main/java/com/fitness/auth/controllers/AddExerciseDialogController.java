@@ -50,23 +50,9 @@ public class AddExerciseDialogController {
     }
 
     private void handleAddExercise() {
-        System.out.println("[DEBUG] handleAddExercise called on instance: " + this.hashCode());
         if (!validateInput()) {
             return;
         }
-
-        Exercise selectedExercise = exerciseComboBox.getValue();
-        double weight = Double.parseDouble(weightField.getText());
-        int reps = Integer.parseInt(repsField.getText());
-        String notes = notesArea.getText().trim();
-
-        WorkoutSet set = new WorkoutSet(selectedExercise, workout.getWorkoutSets().size() + 1, reps, weight, notes);
-        workout.addSet(set);
-
-        if (onExerciseAdded != null) {
-            onExerciseAdded.run();
-        }
-
         DialogUtils.showInformation("Success", "Exercise added successfully!");
         dialogStage.close();
         cleanup();

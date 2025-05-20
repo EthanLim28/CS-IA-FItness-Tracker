@@ -14,8 +14,8 @@ public class UserDAO {
     public void createUser(User user) throws SQLException {
         String sql = "INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        Connection conn = dbConnection.getConnection();
+try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, user.getUsername());
             pstmt.setString(2, user.getEmail());
@@ -33,14 +33,14 @@ public class UserDAO {
                     user.setUserId(rs.getInt(1));
                 }
             }
-        }
-    }
+            }
+}
 
     public Optional<User> findById(int id) throws SQLException {
         String sql = "SELECT * FROM users WHERE user_id = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        Connection conn = dbConnection.getConnection();
+try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);
 
@@ -56,8 +56,8 @@ public class UserDAO {
     public Optional<User> findByUsername(String username) throws SQLException {
         String sql = "SELECT * FROM users WHERE username = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        Connection conn = dbConnection.getConnection();
+try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, username);
 
@@ -73,8 +73,8 @@ public class UserDAO {
     public Optional<User> findByEmail(String email) throws SQLException {
         String sql = "SELECT * FROM users WHERE email = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        Connection conn = dbConnection.getConnection();
+try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, email);
 
@@ -90,8 +90,8 @@ public class UserDAO {
     public void updateUser(User user) throws SQLException {
         String sql = "UPDATE users SET username = ?, email = ?, password_hash = ? WHERE user_id = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        Connection conn = dbConnection.getConnection();
+try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, user.getUsername());
             pstmt.setString(2, user.getEmail());
@@ -102,14 +102,14 @@ public class UserDAO {
             if (affectedRows == 0) {
                 throw new SQLException("Updating user failed, no rows affected.");
             }
-        }
-    }
+            }
+}
 
     public void updatePassword(int userId, String newPasswordHash) throws SQLException {
         String sql = "UPDATE users SET password_hash = ? WHERE user_id = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        Connection conn = dbConnection.getConnection();
+try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, newPasswordHash);
             pstmt.setInt(2, userId);
@@ -118,14 +118,14 @@ public class UserDAO {
             if (affectedRows == 0) {
                 throw new SQLException("Updating password failed, no rows affected.");
             }
-        }
-    }
+            }
+}
 
     public void updateEmail(int userId, String newEmail) throws SQLException {
         String sql = "UPDATE users SET email = ? WHERE user_id = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        Connection conn = dbConnection.getConnection();
+try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, newEmail);
             pstmt.setInt(2, userId);
@@ -134,14 +134,14 @@ public class UserDAO {
             if (affectedRows == 0) {
                 throw new SQLException("Updating email failed, no rows affected.");
             }
-        }
-    }
+            }
+}
 
     public boolean isEmailTaken(String email) throws SQLException {
         String sql = "SELECT COUNT(*) FROM users WHERE email = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        Connection conn = dbConnection.getConnection();
+try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, email);
 
@@ -157,16 +157,16 @@ public class UserDAO {
     public void deleteUser(int id) throws SQLException {
         String sql = "DELETE FROM users WHERE user_id = ?";
 
-        try (Connection conn = dbConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        Connection conn = dbConnection.getConnection();
+try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, id);
             int affectedRows = pstmt.executeUpdate();
             if (affectedRows == 0) {
                 throw new SQLException("Deleting user failed, no rows affected.");
             }
-        }
-    }
+            }
+}
 
     private User mapResultSetToUser(ResultSet rs) throws SQLException {
         return new User(

@@ -18,13 +18,23 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fitness.auth.controllers.ProgressTrackingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fitness.auth.controllers.ProgressTrackingController">
    <children>
       <VBox fx:id="mainContainer" layoutX="350.0" layoutY="200.0" prefHeight="200.0" prefWidth="100.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
          <children>
+            <AnchorPane>
+               <children>
+                  <HBox alignment="CENTER_RIGHT" spacing="10.0" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <Button fx:id="backButton" text="Back" onAction="#handleBack" />
+                        <Button fx:id="homeButton" text="Home" onAction="#handleHome" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
             <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="200.0" spacing="15.0">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -58,9 +68,9 @@
                                           <DatePicker fx:id="toDatePicker" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" promptText="To Date" />
                                        </children>
                                     </HBox>
-                                    <LineChart legendVisible="false">
+                                    <LineChart fx:id="progressChart" legendVisible="false">
                                       <xAxis>
-                                        <CategoryAxis label="Date" side="BOTTOM" fx:id="xAxis" />
+                                        <CategoryAxis fx:id="xAxis" label="Date" side="BOTTOM" />
                                       </xAxis>
                                       <yAxis>
                                         <NumberAxis fx:id="yAxis" label="Total (kg) " side="LEFT" />

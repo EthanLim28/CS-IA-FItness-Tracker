@@ -11,8 +11,35 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.stage.Stage;
 
-public class ProgressTrackingController {
+public class ProgressTrackingController extends BaseController {
+    public ProgressTrackingController() {
+        System.out.println("[DEBUG] ProgressTrackingController: Constructor called");
+    }
+    @FXML private Button backButton;
+    @FXML private Button homeButton;
+
+
+    @FXML
+    private void handleBack() {
+        System.out.println("[DEBUG] ProgressTrackingController: handleBack called. navigationController=" + navigationController + ", stage=" + stage);
+        if (navigationController != null) {
+            navigationController.navigateBack();
+        } else if (stage != null) {
+            stage.close();
+        }
+    } // Uses base class fields
+
+    @FXML
+    private void handleHome() {
+        System.out.println("[DEBUG] ProgressTrackingController: handleHome called. navigationController=" + navigationController + ", stage=" + stage);
+        if (navigationController != null) {
+            navigationController.navigateToHome();
+        } else if (stage != null) {
+            stage.close();
+        }
+    } // Uses base class fields
     @FXML private TextField exerciseIdField;
     @FXML private ComboBox<SetOption> setIdComboBox;
     @FXML private Button searchButton;
@@ -60,8 +87,11 @@ public class ProgressTrackingController {
         public int getReps() { return reps; }
     }
 
+
     @FXML
     public void initialize() {
+        if (backButton != null) backButton.setOnAction(e -> handleBack());
+        if (homeButton != null) homeButton.setOnAction(e -> handleHome());
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         weightColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
         repsColumn.setCellValueFactory(new PropertyValueFactory<>("reps"));

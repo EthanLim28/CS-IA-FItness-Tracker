@@ -18,11 +18,18 @@ public class FitnessApplication extends Application {
         // Load the login view
         FXMLLoader loader = new FXMLLoader();
         URL loginFxml = getClass().getResource("/fxml/login.fxml");
+        System.out.println("[DEBUG] Loading login.fxml from: " + loginFxml);
         if (loginFxml == null) {
             throw new RuntimeException("Cannot find /fxml/login.fxml");
         }
         loader.setLocation(loginFxml);
         Parent root = loader.load();
+
+// Inject NavigationController into LoginController
+com.fitness.auth.controllers.LoginController controller = loader.getController();
+controller.setNavigationController(new com.fitness.auth.controllers.NavigationController(primaryStage));
+
+        System.out.println("[DEBUG] FXML loaded, showing primary stage.");
         
         // Create scene and add stylesheet
         Scene scene = new Scene(root);

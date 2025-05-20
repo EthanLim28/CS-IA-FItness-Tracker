@@ -104,7 +104,6 @@ public class DailyWorkoutDAO {
                         rs.getString("name"),
                         rs.getString("description"),
                         rs.getString("muscle_group"),
-                        ExerciseCategory.valueOf(rs.getString("category")),
                         rs.getString("equipment")
                     );
                     
